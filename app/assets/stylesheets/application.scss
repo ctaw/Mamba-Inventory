@@ -1,0 +1,26 @@
+/*
+ *= require_self
+ *= require chosen
+ */
+ 
+@import 'vendor/bootstrap/bootstrap';
+@import 'vendor/datepicker/datepicker';
+@import 'vendor/font-awesome/font-awesome';
+@import 'vendor/datatable/datatable';
+
+// For Login Page
+@import 'variables';
+@import 'login/main';
+
+// Admin Ui
+@import 'admin/main';
+@import 'admin/sidebar';
+@import 'admin/box';
+
+// company settings ui
+@import 'admin/company';
+
+
+body {
+  background: $mamba-cream;
+}

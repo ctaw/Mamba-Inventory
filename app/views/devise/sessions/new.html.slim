@@ -1,0 +1,27 @@
+section.login-form
+  .container
+    .clearbig
+    .row
+      .text-center Inventory and POS
+      br
+  	.row
+  		= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-signin"}) do |f|
+  			= image_tag ('logo.png'), :class => "img-responsive divider"
+
+  			.field.clearsmall
+  				= f.email_field :email, autofocus: true, :class=>"form-control input-sm", :placeholder => "Email"
+  			.field
+  			  = f.password_field :password, autocomplete: "off", :class=>"form-control", :placeholder => "Password"
+  			- if devise_mapping.rememberable?
+
+  			.field
+  				.checkbox
+  				  = f.check_box :remember_me
+  				  = f.label :remember_me
+
+  			.actions.clearsmall
+  			  = f.submit "Log in", :class=>"btn btn-lg btn-primary btn-block"
+
+    .row
+      br
+      .text-center.small-text © Mamba 2017 | All rights reserved

@@ -1,0 +1,16 @@
+$mamba-main-color: #8c267c;
+$mamba-secondary-color: #d01887;
+$mamba-dark: #494948;
+$mamba-darker: #000;
+$mamba-white: #fff;
+$mamba-cream: #efeeee;
+
+.btn-primary {
+  background: $mamba-main-color;
+  border-color: $mamba-main-color;
+}
+.btn-primary:hover,
+.btn-primary:focus,{
+  background: $mamba-secondary-color;
+  border-color: $mamba-secondary-color;
+}

@@ -1,0 +1,113 @@
+.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+  h4.page-header CRUD Settings
+
+  .row
+    .col-md-6
+      .row
+        .col-xs-6
+        .col-xs-6
+          a.btn.btn-xs.btn-primary.pull-right href="/admin/setting_module/categories/new" Add
+      br
+      #accordion.panel-group
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a.accordion-toggle data-parent="#accordion" data-toggle="collapse" href="#categoryData"
+                | Categories
+          #categoryData.panel-collapse.collapse.in
+            .panel-body
+              .table-responsive
+                table.table.table-hovered.table-striped
+                  thead
+                    tr
+                      th Name
+                      th Description
+                      th
+                  tbody
+                    - if @categories == []
+                      tr
+                        td colspan="3" No records
+                    - else
+                      - @categories.each do |c|
+                        tr
+                          td = c.name
+                          td = c.description
+                          td style=('width: 2%;')
+                            a href="/admin/setting_module/categories/#{c.id}/edit"
+                              i.fa.fa-pencil
+                .pull-right
+                  =will_paginate @categories, :param_name=>"categories",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+    .col-md-6
+      .row
+        .col-xs-6
+        .col-xs-6
+          a.btn.btn-xs.btn-primary.pull-right href="/admin/setting_module/units/new" Add
+      br
+      #accordion.panel-group
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a.accordion-toggle data-parent="#accordion" data-toggle="collapse" href="#unitData"
+                | Unit
+          #unitData.panel-collapse.collapse.in
+            .panel-body
+              .table-responsive
+                table.table.table-hovered.table-striped
+                  thead
+                    tr
+                      th Name
+                      th Description
+                      th
+                  tbody
+                    - if @units == []
+                      tr
+                        td colspan="3" No records
+                    - else
+                      - @units.each do |u|
+                        tr
+                          td= u.name
+                          td= u.description
+                          td style=('width: 2%;')
+                            a href="/admin/setting_module/units/#{u.id}/edit"
+                              i.fa.fa-pencil
+                .pull-right
+                  =will_paginate @units, :param_name=>"units",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+
+  .row
+    .col-md-6
+      .row
+        .col-xs-6
+        .col-xs-6
+          a.btn.btn-xs.btn-primary.pull-right href="/admin/setting_module/category_types/new" Add
+      br
+      #accordion.panel-group
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a.accordion-toggle data-parent="#accordion" data-toggle="collapse" href="#categoryTypeData"
+                | Category Type
+          #categoryTypeData.panel-collapse.collapse.in
+            .panel-body
+              .table-responsive
+                table.table.table-hovered.table-striped
+                  thead
+                    tr
+                      th Category
+                      th Name
+                      th Description
+                      th
+                  tbody
+                    - if @category_types == []
+                      tr
+                        td colspan="4" No records
+                    - else
+                      - @category_types.each do |ct|
+                        tr
+                          td= ct.category.name
+                          td= ct.name
+                          td= ct.description
+                          td style=('width: 2%;')
+                            a href="/admin/setting_module/category_types/#{ct.id}/edit"
+                              i.fa.fa-pencil
+                .pull-right
+                  =will_paginate @category_types, :param_name=>"category_types",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe

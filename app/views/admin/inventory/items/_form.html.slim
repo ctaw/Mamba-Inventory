@@ -1,0 +1,43 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title New Item
+      .panel-body
+        = form_for([:admin, :inventory, @item], :html => {:class => "form-horizontal form-border"}) do |f|
+          .form-group
+            .col-sm-6
+              label for="item_name"  Item Name
+              = f.text_field :item_name, :class=>"form-control", placeholder: "Item Name"
+
+            .col-sm-6
+              label for="category_type_id"  Category Type
+              =f.select(:category_type_id, options_from_collection_for_select(@category_types,"id","name", f.object.category_type_id),{},:class =>"form-control chosen")
+
+          .form-group
+            .col-sm-6
+              label for="unit_id"  Unit
+              =f.select(:unit_id, options_from_collection_for_select(@units,"id","name", f.object.unit_id),{},:class =>"form-control chosen")
+
+            .col-sm-6
+              label for="price"  Price
+              = f.text_field :price, :class=>"form-control"
+
+          .form-group
+            .col-sm-6
+              label for="stock"  Stock
+              = f.text_field :stock, :class=>"form-control"
+
+            .col-sm-6
+              label for="description" Description
+              = f.text_area :description, :class=>"form-control"
+
+          .row
+            .col-md-12
+              hr
+              .btn-group.pull-right
+                a.btn.btn-default href="/admin/inventory/items" Cancel
+                = f.submit "Save", :class => "btn btn-success"
+
+javascript:
+  $(".chosen").chosen();
