@@ -1,0 +1,59 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Sales
+      .panel-body
+        = form_for([:admin, :pos, @sale], :html => {:class => "form-horizontal form-border"}) do |f|
+
+          .form-group
+            .col-sm-8
+              label for="item_id" Select Item
+              =f.select(:item_id, options_from_collection_for_select(@items,:id, :item_selected, f.object.item_id),{},:class =>"form-control chosen")
+
+            .col-sm-4
+              label for="note" Description
+              = f.text_area :note, :class=>"form-control"
+
+          .form-group
+            .col-sm-4
+              label for="quantity"  Quantity
+              = f.text_field :quantity, :class=>"form-control"
+
+            .col-sm-4
+              label for="price"  Price
+              = f.text_field :price, :class=>"form-control"
+
+            .col-sm-4
+              label for="total"  Total
+              = f.text_field :total, :class=>"form-control"
+
+          .row
+            .col-md-12
+              hr
+              .btn-group.pull-right
+                a.btn.btn-default href="/admin/inventory/items" Cancel
+                = f.submit "Save", :class => "btn btn-success"
+
+javascript:
+  $(".chosen").chosen();
+
+javascript:
+  $("#sale_item_id").on('change', function() {
+    var item_id = this.value;
+    $.ajax({
+      type: 'GET',
+      url: "/admin/pos/sales/computation",
+      data : {
+        item_id : item_id
+      }
+    });
+  });
+
+  $('#sale_quantity').on("input", function() {
+    var quantity = this.value;
+    var price = $("#sale_price").val();
+    var total = (parseFloat(quantity) * parseFloat(price));
+
+    $("#sale_total").val(parseFloat(total));
+  });

@@ -5,6 +5,10 @@ class Item < ActiveRecord::Base
   belongs_to :category_type
   belongs_to :unit
 
+  def item_selected
+    self.item_name + " - " + self.unit.name
+  end
+
   private
 
   def generate_item_code

@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
 
     namespace :pos do
-      resources :sales
+      resources :sales do
+        collection do
+          get 'computation'
+        end
+      end
       resources :reports
     end
 

@@ -18,7 +18,7 @@ i.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
             table.table.table-hovered.table-striped
               thead
                 tr
-                  th Item Code
+                  th Transaction Code
                   th Item Name
                   th Quantity
                   th Total Amount
@@ -30,8 +30,8 @@ i.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
                 -else
                  - @transactions.each do |transaction|
                    tr
-                    td= transaction.item_code
-                    td= transaction.item_name
+                    td= transaction.transaction_code
+                    td= transaction.get_item_name
                     td= transaction.quantity
                     td= number_to_currency(transaction.total, unit: "₱")
                     td= format_date(transaction.created_at)
