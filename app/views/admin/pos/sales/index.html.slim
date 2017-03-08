@@ -20,6 +20,7 @@ i.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
                 tr
                   th Transaction Code
                   th Item Name
+                  th Unit
                   th Quantity
                   th Total Amount
                   th Date Purchased
@@ -32,6 +33,7 @@ i.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
                    tr
                     td= transaction.transaction_code
                     td= transaction.get_item_name
+                    td= transaction.get_item_unit
                     td= transaction.quantity
                     td= number_to_currency(transaction.total, unit: "₱")
                     td= format_date(transaction.created_at)

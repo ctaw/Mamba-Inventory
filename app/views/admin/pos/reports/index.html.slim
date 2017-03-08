@@ -3,4 +3,64 @@
 
   .row
     .col-lg-8
-      h1 Coming Soon
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Sales Report
+        .panel-body
+          .table-responsive
+            table.table.table-hovered.table-striped
+              thead
+                tr
+                  th Transaction Code
+                  th Item Code
+                  th Price
+                  th Date Purchased
+              tbody
+                -if @sales == []
+                  tr
+                    td colspan="7" No records
+                -else
+                 - @sales.each do |sale|
+                   tr
+                    td= sale.transaction_code
+                    td= sale.get_item_code
+                    td= number_to_currency(sale.total, unit: "₱")
+                    td= format_date(sale.created_at)
+
+
+
+
+    .col-lg-4
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Summary
+        .panel-body
+          ul.list-group
+            li.list-group-item
+              span.badge= number_to_currency(@total_sale, unit: "₱")
+              | Total Sales
+
+
+
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Sales Date
+        .panel-body
+          = search_form_for @q, url: admin_pos_reports_path, html: { class: 'form-vertical' } do |f|
+            .panel-body
+              .form-group
+                = f.label 'FROM'
+                = f.search_field :created_at_gteq, class: 'form-control input-sm date1'
+
+              .form-group
+                = f.label 'TO'
+                = f.search_field :created_at_lteq, class: 'form-control input-sm date2'
+            = link_to 'Cancel', admin_pos_reports_path, class: 'btn btn-default btn-block'
+            = f.submit "Search", class: 'btn btn-primary btn-block'
+
+
+javascript:
+  $(document).ready(function(){
+    $('.date1').datepicker({ format: 'yyyy-mm-dd' });
+    $('.date2').datepicker({ format: 'yyyy-mm-dd' });
+  });

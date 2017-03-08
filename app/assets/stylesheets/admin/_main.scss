@@ -286,3 +286,11 @@ body {
   color: red;
   font-weight: bold;
 }
+
+.badge {
+  padding: 6px 19px;
+  font-size: 13px;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  background-color: $mamba-main-color;
+}

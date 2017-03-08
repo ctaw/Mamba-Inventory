@@ -6,6 +6,18 @@ class Sale < ActiveRecord::Base
     return item.item_name
   end
 
+  def get_item_code
+    item_code = Item.where(id: self.item_id).first
+    return item_code.item_code
+  end
+
+  def get_item_unit
+    item_unit = Item.where(id: self.item_id).first
+    unit = Unit.where(id: item_unit.unit_id).first
+    unit_name = unit.name
+    return unit_name
+  end
+
   private
 
   def generate_transaction_code
