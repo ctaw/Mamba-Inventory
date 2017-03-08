@@ -24,6 +24,7 @@
                   th Category
                   th Unit
                   th Price
+                  th Sale Price
                   th Stock
               tbody
                 -if @items == []
@@ -33,11 +34,16 @@
                  - @items.each do |item|
                    tr
                     td= item.item_code
-                    td= item.category_type.name
                     td= item.item_name
                     td= item.description
+                    td= item.category_type.name
                     td= item.unit.name
                     td= number_to_currency(item.price, unit: "₱")
-                    td= item.stock
+                    td= number_to_currency(item.sale_price, unit: "₱")
+                    td
+                      - if item.stock.to_i <= 50
+                        .warning= item.stock
+                      -else
+                        = item.stock
 
               =will_paginate @items, :param_name=>"items",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe

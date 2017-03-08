@@ -30,9 +30,9 @@ class Admin::Pos::SalesController < Admin::SettingModuleController
 
   def computation
     item_id = params[:item_id]
-    item = Item.select('id, item_name, price').where(id: item_id).first
+    item = Item.select('id, item_name, sale_price').where(id: item_id).first
 
-    @item_price = item.price.to_f
+    @item_price = item.sale_price.to_f
 
     respond_to do |format|
       format.js { render :action => "computation" }

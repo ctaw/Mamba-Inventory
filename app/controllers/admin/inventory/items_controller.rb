@@ -52,7 +52,7 @@ class Admin::Inventory::ItemsController < Admin::SettingModuleController
 
   def item_params
 		params.require(:item).permit(:category_type_id, :item_code, :item_name, :description,
-        :unit_id, :price, :stock)
+        :unit_id, :price, :sale_price, :stock)
 	end
 
 end

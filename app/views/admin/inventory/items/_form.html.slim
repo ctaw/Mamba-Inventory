@@ -15,13 +15,17 @@
               =f.select(:category_type_id, options_from_collection_for_select(@category_types,"id","name", f.object.category_type_id),{},:class =>"form-control chosen")
 
           .form-group
-            .col-sm-6
+            .col-sm-4
               label for="unit_id"  Unit
               =f.select(:unit_id, options_from_collection_for_select(@units,"id","name", f.object.unit_id),{},:class =>"form-control chosen")
 
-            .col-sm-6
+            .col-sm-4
               label for="price"  Price
               = f.text_field :price, :class=>"form-control"
+
+            .col-sm-4
+              label for="sale_price"  Sales Price
+              = f.text_field :sale_price, :class=>"form-control"
 
           .form-group
             .col-sm-6
