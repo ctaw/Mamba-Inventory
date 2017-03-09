@@ -106,8 +106,8 @@ body {
   background: rgba(0, 0, 0, 0.15);
 }
 .small-box h3 {
-  font-size: 38px;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 500;
   margin: 0 0 10px 0;
   white-space: nowrap;
   padding: 0;
@@ -133,7 +133,7 @@ body {
   top: -5px;
   right: 10px;
   z-index: 0;
-  font-size: 75px;
+  font-size: 73px;
   color: rgba(0, 0, 0, 0.15);
 }
 .small-box:hover {
@@ -141,7 +141,7 @@ body {
   color: $mamba-white;
 }
 .small-box:hover .icon {
-  font-size: 95px;
+  font-size: 85px;
 }
 @media (max-width: 767px) {
   .small-box {
@@ -229,7 +229,7 @@ body {
 .progress-description {
   margin: 0;
 }
-.bg-aqua { background-color: #00c0ef; }
+.bg-main { background-color: rgba(208, 24, 135, 0.82); }
 .bg-yellow { background-color: #f39c12; }
 .bg-red { background-color: #dd4b39; }
 .bg-green { background-color: #00a65a; }
@@ -293,4 +293,8 @@ body {
   font-weight: lighter;
   letter-spacing: 1px;
   background-color: $mamba-main-color;
+}
+.nextp {
+  text-align: center;
+  margin: -25px 0 25px;
 }

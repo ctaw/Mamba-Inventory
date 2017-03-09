@@ -1,7 +1,8 @@
 .container-fluid
   .row
     .col-sm-3.col-md-2.sidebar
-      .company-name Company Name
+      .company-name BOOZETED BRADS
+      p.nextp KapShop
       ul.nav.nav-sidebar
         li#fli class="#{params[:controller] == 'admin/dashboard' ? 'active' : ''}"
           a href="/admin/dashboard"  Dashboard
@@ -12,11 +13,8 @@
         li.header-nav POS
         li class="#{params[:controller] == 'admin/pos/sales' ? 'active' : ''}"
           a href="/admin/pos/sales"  Sales
-        li class="#{params[:controller] == 'admin/pos/reports' ? 'active' : ''}"
-          a href="/admin/pos/reports" Reports
+
 
         li.header-nav#last-li Settings
         li class="#{params[:controller] == 'admin/setting_module' ? 'active' : ''}"
           a href="/admin/setting_module"  CRUD
-        li class="#{params[:controller] == '#' ? 'active' : ''}"
-          a href="#"  Company

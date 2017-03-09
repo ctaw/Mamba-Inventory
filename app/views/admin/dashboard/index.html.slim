@@ -1,43 +1,65 @@
 .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-  h4.page-header Dashboard
-
-  .row
-    .col-lg-8
-      .col-xs-6
-        /! small box
-        .small-box.bg-aqua
-          .inner
-            h3 1
-            p Employees
-          .icon
-            i.fa.fa-users
-          a.small-box-footer href="#"
-            | More info
-            i.fa.fa-arrow-circle-right
-      .col-xs-6
-        /! small box
-        .small-box.bg-yellow
-          .inner
-            h3 2
-            p Dependents
-          .icon
-            i.fa.fa-plus
-          a.small-box-footer href="#"
-            | More info
-            i.fa.fa-arrow-circle-right
-
-    .col-lg-4
-      = image_tag('company/logo.png', class: 'img-responsive img-logo')
-
-  .clearsmall
+  h4.page-header Reports
 
   .row
     .col-lg-8
       .panel.panel-default
-        .panel-heading About Company
+        .panel-heading
+          h3.panel-title Sales Report
         .panel-body
+          .table-responsive
+            table.table.table-hovered.table-striped
+              thead
+                tr
+                  th Transaction Code
+                  th Item Code
+                  th Price
+                  th Date Purchased
+              tbody
+                -if @sales == []
+                  tr
+                    td colspan="7" No records
+                -else
+                 - @sales.each do |sale|
+                   tr
+                    td= sale.transaction_code
+                    td= sale.get_item_code
+                    td= number_to_currency(sale.total, unit: "₱")
+                    td= format_date(sale.created_at)
+
+
+
 
     .col-lg-4
+      .small-box.bg-main
+        .inner
+          h3= number_to_currency(@total_sale, unit: "₱")
+          p Total Sales
+        .icon
+          i.fa.fa-money
+
+
+
+
       .panel.panel-default
-        .panel-heading Activities
+        .panel-heading
+          h3.panel-title Sales Date
         .panel-body
+          = search_form_for @q, url: admin_pos_reports_path, html: { class: 'form-vertical' } do |f|
+            .panel-body
+              .form-group
+                = f.label 'FROM'
+                = f.search_field :created_at_gteq, class: 'form-control input-sm date1'
+
+              .form-group
+                = f.label 'TO'
+                = f.search_field :created_at_lteq, class: 'form-control input-sm date2'
+            = link_to 'Cancel', admin_pos_reports_path, class: 'btn btn-default btn-block'
+            = f.submit "Search", class: 'btn btn-primary btn-block'
+
+
+javascript:
+  $(document).ready(function(){
+    $('.date1').datepicker({ format: 'yyyy-mm-dd' });
+    $('.date2').datepicker({ format: 'yyyy-mm-dd' });
+  });
