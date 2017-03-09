@@ -2,13 +2,14 @@
   h4.page-header Inventory
 
   .row
-    .col-md-12
+    .col-md-8
       .row
         .col-xs-6
         .col-xs-6
           .btn-group.pull-right
             = link_to '', class: 'btn btn-sm btn-warning'
             a.btn.btn-sm.btn-primary href="/admin/inventory/items/new" Add
+
       br
       .panel.panel-default
         .panel-heading
@@ -20,7 +21,6 @@
                 tr
                   th Item Code
                   th Item Name
-                  th Description
                   th Category
                   th Unit
                   th Price
@@ -35,7 +35,6 @@
                    tr
                     td= item.item_code
                     td= item.item_name
-                    td= item.description
                     td= item.category_type.name
                     td= item.unit.name
                     td= number_to_currency(item.price, unit: "₱")
@@ -47,3 +46,20 @@
                         = item.stock
 
               =will_paginate @items, :param_name=>"items",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Filter
+        .panel-body
+          = search_form_for @q, url: admin_inventory_items_path, html: { class: 'form-vertical' } do |f|
+            .panel-body
+              .form-group
+                = f.label 'Item Code'
+                = f.search_field :item_code_eq, class: 'form-control input-sm'
+
+              .form-group
+                = f.label 'Item Name'
+                = f.search_field :item_name_eq, class: 'form-control input-sm'
+
+            = link_to 'Cancel', admin_inventory_items_path, class: 'btn btn-default btn-block'
+            = f.submit "Search", class: 'btn btn-primary btn-block'

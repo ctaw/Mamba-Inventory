@@ -4,7 +4,10 @@ class Admin::Inventory::ItemsController < Admin::SettingModuleController
   before_action :set_item_id, :only=> [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.all.order("id DESC").paginate(:page => params[:items], :per_page => 10)
+    params[:q] ||= {}
+
+    @q = Item.ransack(params[:q])
+    @items = @q.result.all.order("id DESC").paginate(:page => params[:items], :per_page => 10)
   end
 
   def new
